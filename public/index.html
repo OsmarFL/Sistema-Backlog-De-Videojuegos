@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backlog de Videojuegos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="notificacion" class="notificacion" style="display:none;"></div>
+
+  <header>
+    <h1><i class="fa-solid fa-gamepad"></i> Mi Backlog de Videojuegos</h1>
+  </header>
+
+  <main>
+
+    <section class="contadores">
+      <div class="contador">
+        <i class="fa-solid fa-clock contador-icono"></i>
+        <span id="total-pendiente">0</span>
+        <p>Pendientes</p>
+      </div>
+      <div class="contador">
+        <i class="fa-solid fa-play contador-icono"></i>
+        <span id="total-jugando">0</span>
+        <p>Jugando</p>
+      </div>
+      <div class="contador">
+        <i class="fa-solid fa-check contador-icono"></i>
+        <span id="total-terminado">0</span>
+        <p>Terminados</p>
+      </div>
+    </section>
+
+    <section class="filtros">
+      <select id="filtro-estado">
+        <option value="todos">Todos</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="jugando">Jugando</option>
+        <option value="terminado">Terminado</option>
+      </select>
+      <button id="btn-abrir-form">
+        <i class="fa-solid fa-plus"></i> Agregar Juego
+      </button>
+    </section>
+
+    <section class="formulario" id="formulario" style="display:none;">
+      <h2 id="form-titulo"><i class="fa-solid fa-gamepad"></i> Agregar Juego</h2>
+      <input type="hidden" id="juego-id">
+      <div class="input-icono">
+        <i class="fa-solid fa-heading"></i>
+        <input type="text" id="titulo" placeholder="Título *" required>
+      </div>
+      <div class="input-icono">
+        <i class="fa-solid fa-tags"></i>
+        <input type="text" id="genero" placeholder="Género *" required>
+      </div>
+      <div class="input-icono">
+        <i class="fa-solid fa-desktop"></i>
+        <input type="text" id="plataforma" placeholder="Plataforma *" required>
+      </div>
+      <div class="input-icono">
+        <i class="fa-solid fa-list"></i>
+        <select id="estado">
+          <option value="pendiente">Pendiente</option>
+          <option value="jugando">Jugando</option>
+          <option value="terminado">Terminado</option>
+        </select>
+      </div>
+      <div class="input-icono">
+        <i class="fa-solid fa-star"></i>
+        <input type="number" id="calificacion" placeholder="Calificación (1-10)" min="1" max="10">
+      </div>
+      <div class="input-icono">
+        <i class="fa-solid fa-image"></i>
+        <input type="text" id="portada" placeholder="URL de portada (opcional)">
+      </div>
+      <div class="input-icono">
+        <textarea id="notas" placeholder="Notas personales"></textarea>
+      </div>
+      <div class="form-botones">
+        <button id="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        <button id="btn-cancelar"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+      </div>
+    </section>
+
+    <section class="lista" id="lista-juegos">
+      <p id="sin-resultados" style="display:none;">
+        <i class="fa-solid fa-inbox"></i> No hay juegos aquí todavía.
+      </p>
+    </section>
+
+  </main>
+
+  <div class="modal" id="modal" style="display:none;">
+    <div class="modal-contenido">
+      <i class="fa-solid fa-triangle-exclamation" style="font-size:2rem; color:#e94560;"></i>
+      <p>¿Estás seguro de que quieres eliminar este juego?</p>
+      <button id="btn-confirmar-eliminar"><i class="fa-solid fa-trash"></i> Sí, eliminar</button>
+      <button id="btn-cancelar-eliminar"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-detalle" style="display:none;">
+    <div class="modal-contenido modal-detalle-contenido">
+      <h2 id="detalle-titulo"></h2>
+      <span id="detalle-badge" class="badge"></span>
+      <p><i class="fa-solid fa-desktop"></i> <strong>Plataforma:</strong> <span id="detalle-plataforma"></span></p>
+      <p><i class="fa-solid fa-tags"></i> <strong>Género:</strong> <span id="detalle-genero"></span></p>
+      <p><i class="fa-solid fa-star"></i> <strong>Calificación:</strong> <span id="detalle-calificacion"></span></p>
+      <p><i class="fa-solid fa-note-sticky"></i> <strong>Notas:</strong> <span id="detalle-notas"></span></p>
+      <p><i class="fa-solid fa-calendar"></i> <strong>Agregado:</strong> <span id="detalle-fecha"></span></p>
+      <button id="btn-cerrar-detalle"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
